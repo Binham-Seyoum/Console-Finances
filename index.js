@@ -111,3 +111,33 @@ let averageChange = count/finances.length
 let averageChange1 = averageChange.toFixed(2)
 
 console.log(`Average Change = £${averageChange1}`)
+
+let total = 0;
+let net = 0;
+let netArray = [] ;
+let netChangeSum = 0;
+let least = [``, 999999999999999];
+let greatest = [``, 0 ]
+for (let index = 0; index < finances.length; index++){
+    for( let index2 = 0; index2 < finances[index].length; index2++) {
+        if(typeof finances[index][index2] !== `string`){
+            total += finances[index][index2];
+            change = finances[index][index2] - net;
+            net = finances[index][index2];
+            netArray.push(change);
+
+            if(change > greatest[1]){
+                greatest = [finances[index][0], finances[index][1]]
+            }
+
+            if(change <least[1]){
+                least = [finances[index][0], finances[index][1]]
+            }
+
+        }
+    }
+}
+analysis =`Greatest Increase In Profit: ` + greatest[0] + `: $` + greatest[1] + `\n` +
+`Greatest decrease In Profit: ` + least[0] + `: $` + least[1] +`\n` ;
+console.log(analysis)
+
